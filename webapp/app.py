@@ -11,6 +11,10 @@ session = onnxruntime.InferenceSession(
     "roberta-sequence-classification-9.onnx")
 
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
 @app.route("/predict", methods=["POST"])
 def predict():
     input_ids = torch.tensor(
