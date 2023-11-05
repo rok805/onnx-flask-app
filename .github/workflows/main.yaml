@@ -56,6 +56,12 @@ jobs:
         uses: ASzc/change-string-case-action@v5
         with:
           string: ${{ github.repository_owner }}
+
+      - name: Set up environment
+        run: echo "CURRENT_DATE=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
+      - name: Show current date
+        run: echo $CURRENT_DATE
         
       - name: 컨테이너 빌드 후 도커 허브와 깃허브 레지스트리로 동시에 푸시
         uses: docker/build-push-action@v2
@@ -64,5 +70,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/flask-docker-onnx-azure_x86:$(date +'%Y%m%d%H%M%S')
-            ghcr.io/${{ steps.GH_REPOSITORY_OWNER.outputs.lowercase }}/flask-docker-onnx-azure_x86:$(date +'%Y%m%d%H%M%S')
+            ${{ secrets.DOCKER_HUB_USERNAME }}/flask-docker-onnx-azure_x86:$CURRENT_DATE
+            ghcr.io/${{ steps.GH_REPOSITORY_OWNER.outputs.lowercase }}/flask-docker-onnx-azure_x86:$CURRENT_DATE
