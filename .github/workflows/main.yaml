@@ -70,5 +70,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/flask-docker-onnx-azure_x86:$CURRENT_DATE
-            ghcr.io/${{ steps.GH_REPOSITORY_OWNER.outputs.lowercase }}/flask-docker-onnx-azure_x86:$CURRENT_DATE
+            ${{ secrets.DOCKER_HUB_USERNAME }}/flask-docker-onnx-azure_x86:${{ env.CURRENT_DATE }}
+            ghcr.io/${{ steps.GH_REPOSITORY_OWNER.outputs.lowercase }}/flask-docker-onnx-azure_x86:${{ env.CURRENT_DATE }}
